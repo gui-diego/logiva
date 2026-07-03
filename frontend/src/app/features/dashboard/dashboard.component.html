@@ -1,69 +1,66 @@
-<header class="page-header">
-  <div>
-    <h2>Dashboard</h2>
-    <p class="subtitle">Visão geral das operações de entrega</p>
-  </div>
-</header>
+<div class="app-page">
+  <app-page-header title="Dashboard" subtitle="Visão geral das operações de entrega" />
 
-@if (loading()) {
-  <div class="loading"><mat-spinner /></div>
-} @else {
-  <div class="kpi-grid">
-    <app-kpi-card
-      label="Total de entregas"
-      [value]="overview()?.totalDeliveries ?? 0"
-      hint="Volume monitorado"
-      icon="inventory_2"
-      iconBg="linear-gradient(135deg, #2563eb, #1d4ed8)"
-      accentColor="#2563eb"
-    />
-    <app-kpi-card
-      label="Entregues"
-      [value]="overview()?.delivered ?? 0"
-      hint="Concluídas com sucesso"
-      icon="check_circle"
-      iconBg="linear-gradient(135deg, #16a34a, #15803d)"
-      accentColor="#16a34a"
-    />
-    <app-kpi-card
-      label="Atrasadas"
-      [value]="overview()?.delayed ?? 0"
-      hint="Fora do prazo previsto"
-      icon="warning"
-      iconBg="linear-gradient(135deg, #dc2626, #b91c1c)"
-      accentColor="#dc2626"
-    />
-    <app-kpi-card
-      label="Taxa no prazo"
-      [value]="overview()?.onTimeRate ?? 0"
-      suffix="%"
-      hint="Entregas concluídas / total"
-      icon="trending_up"
-      iconBg="linear-gradient(135deg, #ea580c, #c2410c)"
-      accentColor="#ea580c"
-    />
-  </div>
-
-  @if (showCharts()) {
-    <div class="charts-grid">
-      <div class="chart-card">
-        <div class="chart-header">
-          <h3>Entregas por status</h3>
-          <span class="chart-meta">Distribuição atual</span>
-        </div>
-        <div class="chart-body">
-          <canvas baseChart [data]="statusChartData()" [options]="doughnutOptions" type="doughnut"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-header">
-          <h3>Tendência</h3>
-          <span class="chart-meta">Últimos 7 dias</span>
-        </div>
-        <div class="chart-body">
-          <canvas baseChart [data]="trendChartData()" [options]="barOptions" type="bar"></canvas>
-        </div>
-      </div>
+  @if (loading()) {
+    <app-page-skeleton variant="dashboard" />
+  } @else {
+    <div class="kpi-grid">
+      <app-kpi-card
+        label="Total de entregas"
+        [value]="overview()?.totalDeliveries ?? 0"
+        hint="Volume monitorado"
+        icon="inventory_2"
+        iconBg="linear-gradient(135deg, #4f46e5, #4338ca)"
+        accentColor="#4f46e5"
+      />
+      <app-kpi-card
+        label="Entregues"
+        [value]="overview()?.delivered ?? 0"
+        hint="Concluídas com sucesso"
+        icon="check_circle"
+        iconBg="linear-gradient(135deg, #059669, #047857)"
+        accentColor="#059669"
+      />
+      <app-kpi-card
+        label="Atrasadas"
+        [value]="overview()?.delayed ?? 0"
+        hint="Fora do prazo previsto"
+        icon="warning"
+        iconBg="linear-gradient(135deg, #dc2626, #b91c1c)"
+        accentColor="#dc2626"
+      />
+      <app-kpi-card
+        label="Taxa no prazo"
+        [value]="overview()?.onTimeRate ?? 0"
+        suffix="%"
+        hint="Entregas concluídas / total"
+        icon="trending_up"
+        iconBg="linear-gradient(135deg, #ea580c, #c2410c)"
+        accentColor="#ea580c"
+      />
     </div>
+
+    @if (showCharts()) {
+      <div class="charts-grid">
+        <section class="chart-card app-surface">
+          <div class="chart-header">
+            <h3>Entregas por status</h3>
+            <span class="chart-meta">Distribuição atual</span>
+          </div>
+          <div class="chart-body">
+            <canvas baseChart [data]="statusChartData()" [options]="doughnutOptions" type="doughnut"></canvas>
+          </div>
+        </section>
+        <section class="chart-card app-surface">
+          <div class="chart-header">
+            <h3>Tendência</h3>
+            <span class="chart-meta">Últimos 7 dias</span>
+          </div>
+          <div class="chart-body">
+            <canvas baseChart [data]="trendChartData()" [options]="barOptions" type="bar"></canvas>
+          </div>
+        </section>
+      </div>
+    }
   }
-}
+</div>

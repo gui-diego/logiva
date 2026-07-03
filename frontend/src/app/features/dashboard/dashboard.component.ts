@@ -4,6 +4,8 @@ import { ChartConfiguration } from 'chart.js';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { timeout, catchError, of } from 'rxjs';
 import { KpiCardComponent } from '../../shared/components/kpi-card/kpi-card.component';
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { PageSkeletonComponent } from '../../shared/components/page-skeleton/page-skeleton.component';
 import { AnalyticsApiService } from '../../core/api/domain-api.service';
 import { AnalyticsOverview, DeliveryStatus, StatusCount, DeliveryTrend } from '../../core/models';
 import { DELIVERY_STATUS_LABELS } from '../../shared/utils/delivery-status.labels';
@@ -23,7 +25,7 @@ const EMPTY_BAR: ChartConfiguration<'bar'>['data'] = {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [KpiCardComponent, BaseChartDirective, MatProgressSpinnerModule],
+  imports: [PageHeaderComponent, PageSkeletonComponent, KpiCardComponent, BaseChartDirective, MatProgressSpinnerModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })

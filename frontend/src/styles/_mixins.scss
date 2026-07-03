@@ -1,0 +1,97 @@
+@mixin surface-card {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+@mixin surface-card-hover {
+  transition:
+    box-shadow var(--transition-base),
+    border-color var(--transition-base),
+    transform var(--transition-base);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border-strong);
+  }
+}
+
+@mixin page-container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  animation: fade-up 0.4s var(--transition-base) both;
+}
+
+@mixin focus-ring {
+  outline: 2px solid var(--color-primary-soft);
+  outline-offset: 2px;
+}
+
+@mixin text-title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+@mixin text-subtitle {
+  margin: var(--space-2) 0 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+@mixin chip-base {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+@mixin data-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+}
+
+@mixin responsive-table {
+  @media (max-width: 768px) {
+    .mat-mdc-header-row {
+      display: none;
+    }
+
+    .mat-mdc-row {
+      display: grid;
+      gap: var(--space-2);
+      padding: var(--space-4);
+      margin-bottom: var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-bg-elevated);
+    }
+
+    .mat-mdc-cell {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 !important;
+      border: none;
+
+      &::before {
+        content: attr(data-label);
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--color-text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-right: var(--space-3);
+      }
+    }
+  }
+}

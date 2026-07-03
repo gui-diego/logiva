@@ -1,44 +1,71 @@
 <div class="login-page">
-  <mat-card class="login-card">
-    <div class="login-header">
-      <mat-icon class="logo">local_shipping</mat-icon>
-      <h1>Logiva</h1>
-      <p>Monitoramento de entregas</p>
-    </div>
+  <div class="login-shell">
+    <section class="login-showcase">
+      <div class="login-showcase__badge">
+        <mat-icon>local_shipping</mat-icon>
+        <span>Logiva</span>
+      </div>
+      <h1>Monitoramento inteligente de entregas</h1>
+      <p>
+        Acompanhe operações logísticas em tempo real com clareza, controle e uma experiência
+        pensada para equipes modernas.
+      </p>
+      <ul class="login-showcase__features">
+        <li><mat-icon>insights</mat-icon> Dashboard operacional</li>
+        <li><mat-icon>route</mat-icon> Rastreamento de entregas</li>
+        <li><mat-icon>groups</mat-icon> Gestão de equipes e parceiros</li>
+      </ul>
+    </section>
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>E-mail</mat-label>
-        <input matInput type="email" formControlName="email" />
-      </mat-form-field>
+    <mat-card class="login-card">
+      <div class="login-header">
+        <h2>Bem-vindo</h2>
+        <p>Entre com suas credenciais para continuar</p>
+      </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Senha</mat-label>
-        <input matInput type="password" formControlName="password" />
-      </mat-form-field>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="login-field-group">
+          <mat-icon class="login-field-icon" aria-hidden="true">mail_outline</mat-icon>
+          <mat-form-field appearance="outline" class="login-field" subscriptSizing="dynamic">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" formControlName="email" autocomplete="email" />
+          </mat-form-field>
+        </div>
 
-      @if (errorMessage()) {
-        <p class="error">{{ errorMessage() }}</p>
-      }
+        <div class="login-field-group">
+          <mat-icon class="login-field-icon" aria-hidden="true">lock_outline</mat-icon>
+          <mat-form-field appearance="outline" class="login-field" subscriptSizing="dynamic">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" formControlName="password" autocomplete="current-password" />
+          </mat-form-field>
+        </div>
 
-      <button
-        mat-flat-button
-        color="primary"
-        class="full-width submit-btn"
-        type="submit"
-        [disabled]="loading() || form.invalid"
-      >
-        @if (loading()) {
-          <mat-spinner diameter="20" />
-        } @else {
-          Entrar
+        @if (errorMessage()) {
+          <div class="login-error">
+            <app-state-banner [message]="errorMessage()" type="error" />
+          </div>
         }
-      </button>
-    </form>
 
-    <div class="demo-credentials">
-      <small>Demo: admin@logistics.com / admin123</small>
-      <small>Demo: operator@logistics.com / operator123</small>
-    </div>
-  </mat-card>
+        <button
+          mat-flat-button
+          color="primary"
+          class="full-width submit-btn"
+          type="submit"
+          [disabled]="loading() || form.invalid"
+        >
+          @if (loading()) {
+            <mat-spinner diameter="20" />
+          } @else {
+            Entrar
+          }
+        </button>
+      </form>
+
+      <div class="demo-credentials">
+        <span class="demo-credentials__label">Contas de demonstração</span>
+        <small>admin@logistics.com / admin123</small>
+        <small>operator@logistics.com / operator123</small>
+      </div>
+    </mat-card>
+  </div>
 </div>

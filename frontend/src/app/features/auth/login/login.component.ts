@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom, timeout } from 'rxjs';
+import { StateBannerComponent } from '../../../shared/components/state-banner/state-banner.component';
 import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
@@ -21,6 +22,7 @@ import { AuthService } from '../../../core/auth/auth.service';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    StateBannerComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',

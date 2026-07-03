@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Nova entrega</h2>
 
 <mat-dialog-content>
-  <form [formGroup]="form" class="form-grid">
+  <form [formGroup]="form" class="app-form-grid dialog-form">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Código de rastreio</mat-label>
       <input matInput formControlName="trackingCode" />
@@ -63,8 +63,8 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close [disabled]="saving">Cancelar</button>
-  <button mat-flat-button color="primary" (click)="submit()" [disabled]="form.invalid || saving">
+  <button mat-stroked-button mat-dialog-close type="button" [disabled]="saving">Cancelar</button>
+  <button mat-flat-button color="primary" type="button" (click)="submit()" [disabled]="form.invalid || saving">
     @if (saving) {
       <mat-spinner diameter="20" />
     } @else {

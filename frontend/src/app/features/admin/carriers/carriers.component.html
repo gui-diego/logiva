@@ -1,73 +1,66 @@
-<header class="page-header">
-  <div>
-    <h2>Transportadoras</h2>
-    <p class="subtitle">Cadastro e gestão de parceiros logísticos</p>
-  </div>
-</header>
+<div class="app-page">
+  <app-page-header title="Transportadoras" subtitle="Cadastro e gestão de parceiros logísticos" />
 
-<div class="content-grid">
-  <mat-card class="table-card">
-    <mat-card-header>
-      <mat-card-title>Transportadoras cadastradas</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      @if (loading()) {
-        <div class="loading"><mat-spinner /></div>
-      } @else {
-        <table mat-table [dataSource]="dataSource" class="carriers-table">
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Nome</th>
-            <td mat-cell *matCellDef="let row">{{ row.name }}</td>
-          </ng-container>
+  <div class="app-content-grid">
+    <section class="app-table-card">
+      <div class="app-table-card__header">
+        <h3>Transportadoras cadastradas</h3>
+      </div>
+      <div class="app-table-card__body table-wrap">
+        @if (loading()) {
+          <app-page-skeleton variant="table" />
+        } @else {
+          <table mat-table [dataSource]="dataSource" class="carriers-table">
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Nome</th>
+              <td mat-cell *matCellDef="let row" data-label="Nome">{{ row.name }}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="code">
-            <th mat-header-cell *matHeaderCellDef>Código</th>
-            <td mat-cell *matCellDef="let row">
-              <span class="code-chip">{{ row.code }}</span>
-            </td>
-          </ng-container>
+            <ng-container matColumnDef="code">
+              <th mat-header-cell *matHeaderCellDef>Código</th>
+              <td mat-cell *matCellDef="let row" data-label="Código">
+                <span class="app-chip app-chip--accent">{{ row.code }}</span>
+              </td>
+            </ng-container>
 
-          <ng-container matColumnDef="active">
-            <th mat-header-cell *matHeaderCellDef>Status</th>
-            <td mat-cell *matCellDef="let row">
-              <span class="status-chip" [class.inactive]="!row.active">
-                {{ row.active ? 'Ativa' : 'Inativa' }}
-              </span>
-            </td>
-          </ng-container>
+            <ng-container matColumnDef="active">
+              <th mat-header-cell *matHeaderCellDef>Status</th>
+              <td mat-cell *matCellDef="let row" data-label="Status">
+                <span class="app-chip" [class.app-chip--success]="row.active" [class.app-chip--muted]="!row.active">
+                  {{ row.active ? 'Ativa' : 'Inativa' }}
+                </span>
+              </td>
+            </ng-container>
 
-          <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let row" class="actions-cell">
-              <button mat-icon-button type="button" title="Editar" (click)="startEdit(row)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-icon-button type="button" title="Excluir" (click)="remove(row)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </td>
-          </ng-container>
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let row" class="actions-cell" data-label="Ações">
+                <button mat-icon-button type="button" title="Editar" (click)="startEdit(row)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button type="button" title="Excluir" (click)="remove(row)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="columns"></tr>
-          <tr mat-row *matRowDef="let row; columns: columns"></tr>
-        </table>
-      }
-    </mat-card-content>
-  </mat-card>
+            <tr mat-header-row *matHeaderRowDef="columns"></tr>
+            <tr mat-row *matRowDef="let row; columns: columns"></tr>
+          </table>
+        }
+      </div>
+    </section>
 
-  <mat-card class="form-card">
-    <mat-card-header>
-      <mat-card-title>{{ editingId() ? 'Editar transportadora' : 'Nova transportadora' }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+    <section class="app-form-card">
+      <h3 class="form-title">{{ editingId() ? 'Editar transportadora' : 'Nova transportadora' }}</h3>
       <form [formGroup]="form" (ngSubmit)="submit()" class="form">
-        <div class="form-row">
-          <mat-form-field appearance="outline" class="col-6">
+        <div class="app-form-grid">
+          <mat-form-field appearance="outline">
             <mat-label>Nome</mat-label>
             <input matInput formControlName="name" placeholder="Ex: Express Brasil" />
           </mat-form-field>
 
-          <mat-form-field appearance="outline" class="col-6">
+          <mat-form-field appearance="outline">
             <mat-label>Código</mat-label>
             <input matInput formControlName="code" placeholder="Ex: EXBR" />
             <mat-hint>Identificador único (sigla)</mat-hint>
@@ -75,16 +68,14 @@
         </div>
 
         @if (editingId()) {
-          <div class="form-row">
-            <div class="col-6 active-toggle">
-              <mat-slide-toggle formControlName="active" color="primary">
-                Transportadora ativa
-              </mat-slide-toggle>
-            </div>
+          <div class="active-toggle">
+            <mat-slide-toggle formControlName="active" color="primary">
+              Transportadora ativa
+            </mat-slide-toggle>
           </div>
         }
 
-        <div class="form-actions">
+        <div class="app-form-actions">
           @if (editingId()) {
             <button mat-stroked-button type="button" (click)="cancelEdit()" [disabled]="saving()">
               Cancelar
@@ -102,6 +93,6 @@
           </button>
         </div>
       </form>
-    </mat-card-content>
-  </mat-card>
+    </section>
+  </div>
 </div>

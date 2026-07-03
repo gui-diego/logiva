@@ -1,94 +1,69 @@
-.page-header {
-  margin-bottom: 24px;
-}
-
-h2 {
-  margin: 0;
-  font-size: 1.75rem;
+.form-title {
+  margin: 0 0 var(--space-5);
+  font-size: 1rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text);
 }
 
-.subtitle {
-  margin: 6px 0 0;
-  color: #64748b;
-  font-size: 14px;
-}
-
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr minmax(380px, 440px);
-  gap: 20px;
-  align-items: start;
-}
-
-@media (max-width: 960px) {
-  .content-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.form-card,
-.table-card {
-  border-radius: 16px;
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
-}
-
-.form-card mat-card-content,
-.table-card mat-card-content {
-  padding-top: 20px;
-}
-
-.form {
-  width: 100%;
-}
-
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 16px;
-  width: 100%;
-}
-
-.col-6 {
-  flex: 0 0 calc(50% - 8px);
-  min-width: 0;
-}
-
-@media (max-width: 600px) {
-  .col-6 {
-    flex: 0 0 100%;
-  }
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  width: 100%;
-  margin-top: 8px;
-}
-
-button mat-icon {
-  margin-right: 4px;
-  vertical-align: middle;
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
+.table-wrap {
+  overflow-x: auto;
 }
 
 .customers-table {
   width: 100%;
 }
 
-.loading {
-  display: flex;
-  justify-content: center;
-  padding: 48px;
+.full-row {
+  grid-column: 1 / -1;
 }
 
 .actions-cell {
   text-align: right;
   white-space: nowrap;
+}
+
+button mat-icon {
+  margin-right: var(--space-1);
+  vertical-align: middle;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 768px) {
+  .customers-table .mat-mdc-header-row {
+    display: none;
+  }
+
+  .customers-table .mat-mdc-row {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    margin-bottom: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-subtle);
+  }
+
+  .customers-table .mat-mdc-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 !important;
+    border: none;
+  }
+
+  .customers-table .mat-mdc-cell::before {
+    content: attr(data-label);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-right: var(--space-3);
+  }
+
+  .actions-cell {
+    justify-content: flex-end !important;
+  }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +9,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { timeout, catchError, of, filter, switchMap } from 'rxjs';
+import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
+import { PageSkeletonComponent } from '../../../shared/components/page-skeleton/page-skeleton.component';
 import { CarrierApiService } from '../../../core/api/domain-api.service';
 import { Carrier } from '../../../core/models';
 import { ConfirmDialogService } from '../../../shared/components/confirm-dialog/confirm-dialog.service';
@@ -20,7 +21,6 @@ import { ConfirmDialogService } from '../../../shared/components/confirm-dialog/
   imports: [
     ReactiveFormsModule,
     MatTableModule,
-    MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -28,6 +28,8 @@ import { ConfirmDialogService } from '../../../shared/components/confirm-dialog/
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    PageHeaderComponent,
+    PageSkeletonComponent,
   ],
   templateUrl: './carriers.component.html',
   styleUrl: './carriers.component.scss',

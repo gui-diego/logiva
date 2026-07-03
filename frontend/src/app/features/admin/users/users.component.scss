@@ -1,84 +1,41 @@
-.page-header {
-  margin-bottom: 24px;
-}
-
-h2 {
-  margin: 0;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.subtitle {
-  margin: 6px 0 0;
-  color: #64748b;
-  font-size: 14px;
-}
-
-.loading {
-  display: flex;
-  justify-content: center;
-  padding: 64px;
-}
-
-.table-card,
-.error-card {
-  border-radius: 16px;
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
-  overflow: hidden;
-}
-
-.table-card {
-  padding: 0;
+.table-wrap {
+  overflow-x: auto;
 }
 
 .users-table {
   width: 100%;
 }
 
-.error-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 24px;
-  color: #b91c1c;
-  background: #fef2f2;
-}
+@media (max-width: 768px) {
+  .users-table .mat-mdc-header-row {
+    display: none;
+  }
 
-.error-card mat-icon {
-  color: #dc2626;
-}
+  .users-table .mat-mdc-row {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    margin-bottom: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-subtle);
+  }
 
-.error-card p {
-  margin: 0;
-}
+  .users-table .mat-mdc-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 !important;
+    border: none;
+  }
 
-.role-chip {
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  background: #eff6ff;
-  color: #1d4ed8;
-}
-
-.role-chip.admin {
-  background: #faf5ff;
-  color: #7c3aed;
-}
-
-.status-chip {
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 500;
-  background: #ecfdf5;
-  color: #047857;
-}
-
-.status-chip.inactive {
-  background: #f1f5f9;
-  color: #64748b;
+  .users-table .mat-mdc-cell::before {
+    content: attr(data-label);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-right: var(--space-3);
+  }
 }

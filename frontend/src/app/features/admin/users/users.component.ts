@@ -4,13 +4,24 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { timeout, catchError, of } from 'rxjs';
+import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
+import { PageSkeletonComponent } from '../../../shared/components/page-skeleton/page-skeleton.component';
+import { StateBannerComponent } from '../../../shared/components/state-banner/state-banner.component';
 import { UserApiService } from '../../../core/api/domain-api.service';
 import { User } from '../../../core/models';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [MatTableModule, MatProgressSpinnerModule, MatCardModule, MatIconModule],
+  imports: [
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatIconModule,
+    PageHeaderComponent,
+    PageSkeletonComponent,
+    StateBannerComponent,
+  ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })

@@ -1,0 +1,38 @@
+<div class="skeleton" [class]="'skeleton--' + variant">
+  @switch (variant) {
+    @case ('dashboard') {
+      <div class="skeleton__kpi-grid">
+        @for (item of [1, 2, 3, 4]; track item) {
+          <div class="skeleton__block skeleton__kpi"></div>
+        }
+      </div>
+      <div class="skeleton__charts">
+        <div class="skeleton__block skeleton__chart"></div>
+        <div class="skeleton__block skeleton__chart"></div>
+      </div>
+    }
+    @case ('table') {
+      @for (row of [1, 2, 3, 4, 5]; track row) {
+        <div class="skeleton__row">
+          <div class="skeleton__block skeleton__cell skeleton__cell--lg"></div>
+          <div class="skeleton__block skeleton__cell"></div>
+          <div class="skeleton__block skeleton__cell"></div>
+        </div>
+      }
+    }
+    @case ('detail') {
+      <div class="skeleton__block skeleton__title"></div>
+      <div class="skeleton__detail-grid">
+        <div class="skeleton__block skeleton__panel"></div>
+        <div class="skeleton__block skeleton__panel"></div>
+      </div>
+    }
+    @case ('form') {
+      <div class="skeleton__form-grid">
+        @for (field of [1, 2, 3, 4]; track field) {
+          <div class="skeleton__block skeleton__field"></div>
+        }
+      </div>
+    }
+  }
+</div>

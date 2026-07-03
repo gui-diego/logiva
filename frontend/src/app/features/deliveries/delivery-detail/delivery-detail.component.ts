@@ -1,7 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -11,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { timeout, catchError, of } from 'rxjs';
+import { PageSkeletonComponent } from '../../../shared/components/page-skeleton/page-skeleton.component';
+import { StateBannerComponent } from '../../../shared/components/state-banner/state-banner.component';
 import { StatusBadgeComponent } from '../../../shared/components/status-badge/status-badge.component';
 import { BrasiliaDatePipe } from '../../../shared/pipes/brasilia-date.pipe';
 import { DeliveryApiService } from '../../../core/api/domain-api.service';
@@ -26,7 +27,6 @@ const STATUSES = ALL_DELIVERY_STATUSES;
   imports: [
     RouterLink,
     ReactiveFormsModule,
-    MatCardModule,
     MatListModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -35,6 +35,8 @@ const STATUSES = ALL_DELIVERY_STATUSES;
     MatIconModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    PageSkeletonComponent,
+    StateBannerComponent,
     StatusBadgeComponent,
     BrasiliaDatePipe,
   ],

@@ -1,0 +1,100 @@
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field .mdc-notched-outline__leading,
+.mat-mdc-form-field .mdc-notched-outline__notch,
+.mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: var(--color-border-strong) !important;
+}
+
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: var(--color-primary) !important;
+}
+
+.mat-mdc-form-field.mat-form-field-appearance-outline .mdc-floating-label--float-above {
+  background: var(--color-bg-elevated);
+  padding: 0 6px;
+  border-radius: 4px;
+}
+
+.mat-mdc-form-field-has-icon-prefix .mat-mdc-form-field-icon-prefix {
+  padding-right: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.mat-mdc-unelevated-button.mat-primary,
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-flat-button.mat-primary {
+  border-radius: var(--radius-sm) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast) !important;
+}
+
+.mat-mdc-unelevated-button.mat-primary:not(:disabled):hover,
+.mat-mdc-flat-button.mat-primary:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.mat-mdc-outlined-button {
+  border-radius: var(--radius-sm) !important;
+  font-weight: 600 !important;
+  border-color: var(--color-border-strong) !important;
+}
+
+.mat-mdc-icon-button {
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast) !important;
+}
+
+.mat-mdc-icon-button:not(:disabled):hover {
+  background: var(--color-bg-muted) !important;
+}
+
+.mat-mdc-table {
+  background: transparent !important;
+}
+
+.mat-mdc-header-cell {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--color-text-muted) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+
+.mat-mdc-cell {
+  color: var(--color-text) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+
+.mat-mdc-row:hover {
+  background: var(--color-bg-subtle) !important;
+}
+
+.mat-mdc-paginator {
+  background: transparent !important;
+  border-top: 1px solid var(--color-border);
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.mat-mdc-card {
+  border-radius: var(--radius-lg) !important;
+}
+
+.mat-mdc-snack-bar-container {
+  border-radius: var(--radius-md) !important;
+}

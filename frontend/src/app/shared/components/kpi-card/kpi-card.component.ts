@@ -1,11 +1,10 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-kpi-card',
   standalone: true,
-  imports: [MatCardModule, MatIconModule],
+  imports: [MatIconModule],
   templateUrl: './kpi-card.component.html',
   styleUrl: './kpi-card.component.scss',
 })

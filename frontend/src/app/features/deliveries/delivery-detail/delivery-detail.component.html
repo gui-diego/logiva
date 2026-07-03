@@ -1,30 +1,31 @@
-<a routerLink="/deliveries" class="back-link">
-  <mat-icon>arrow_back</mat-icon> Voltar
-</a>
+<div class="app-page">
+  <a routerLink="/deliveries" class="app-back-link">
+    <mat-icon>arrow_back</mat-icon>
+    Voltar
+  </a>
 
-@if (loading()) {
-  <div class="loading"><mat-spinner /></div>
-} @else if (errorMessage()) {
-  <mat-card class="error-card">
-    <mat-icon>error_outline</mat-icon>
-    <p>{{ errorMessage() }}</p>
-  </mat-card>
-} @else if (delivery()) {
-  <div class="header">
-    <h2>{{ delivery()!.trackingCode }}</h2>
-    <app-status-badge [status]="delivery()!.status" />
-  </div>
+  @if (loading()) {
+    <app-page-skeleton variant="detail" />
+  } @else if (errorMessage()) {
+    <app-state-banner [message]="errorMessage()!" type="error" icon="error_outline" />
+  } @else if (delivery()) {
+    <header class="detail-header">
+      <div>
+        <h1>{{ delivery()!.trackingCode }}</h1>
+        <p class="detail-subtitle">Detalhes da entrega</p>
+      </div>
+      <app-status-badge [status]="delivery()!.status" />
+    </header>
 
-  <div class="grid">
-    <mat-card>
-      <mat-card-header><mat-card-title>Detalhes</mat-card-title></mat-card-header>
-      <mat-card-content>
+    <div class="detail-grid">
+      <section class="app-surface detail-card">
+        <h3>Informações</h3>
         <dl class="details">
           <dt>Origem</dt><dd>{{ delivery()!.originCity }}</dd>
           <dt>Destino</dt><dd>{{ delivery()!.destinationCity }}</dd>
           <dt>Transportadora</dt><dd>{{ delivery()!.carrierName }}</dd>
           <dt>Cliente</dt><dd>{{ delivery()!.customerName }}</dd>
-          <dt>Peso</dt><dd>{{ delivery()!.weightKg ?? '-' }} kg</dd>
+          <dt>Peso</dt><dd>{{ delivery()!.weightKg ?? '—' }} kg</dd>
           <dt>Previsão</dt>
           <dd>{{ delivery()!.estimatedDeliveryAt | brasiliaDate }}</dd>
           @if (delivery()!.deliveredAt) {
@@ -36,13 +37,11 @@
             <dd>{{ delivery()!.assignedToEmail }}</dd>
           }
         </dl>
-      </mat-card-content>
-    </mat-card>
+      </section>
 
-    @if (auth.hasRole('OPERATOR') && delivery()!.status !== 'DELIVERED') {
-      <mat-card class="update-status-card">
-        <mat-card-header><mat-card-title>Atualizar status</mat-card-title></mat-card-header>
-        <mat-card-content>
+      @if (auth.hasRole('OPERATOR') && delivery()!.status !== 'DELIVERED') {
+        <section class="app-surface detail-card">
+          <h3>Atualizar status</h3>
           <form [formGroup]="statusForm" (ngSubmit)="updateStatus()" class="status-form">
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Novo status</mat-label>
@@ -67,34 +66,29 @@
               }
             </button>
           </form>
-        </mat-card-content>
-      </mat-card>
-    } @else if (auth.hasRole('OPERATOR') && delivery()!.status === 'DELIVERED') {
-      <mat-card class="locked-card">
-        <mat-card-content>
-          <div class="locked-message">
-            <mat-icon>lock</mat-icon>
-            <p>Esta entrega foi finalizada e não permite mais alterações de status.</p>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    }
-  </div>
+        </section>
+      } @else if (auth.hasRole('OPERATOR') && delivery()!.status === 'DELIVERED') {
+        <app-state-banner
+          message="Esta entrega foi finalizada e não permite mais alterações de status."
+          type="info"
+          icon="lock"
+        />
+      }
+    </div>
 
-  <mat-card class="timeline-card">
-    <mat-card-header><mat-card-title>Histórico</mat-card-title></mat-card-header>
-    <mat-card-content>
+    <section class="app-surface timeline-card">
+      <h3>Histórico</h3>
       @if (delivery()!.statusHistory?.length) {
-        <mat-list>
+        <mat-list class="timeline-list">
           @for (item of delivery()!.statusHistory; track $index) {
             <mat-list-item>
               <mat-icon matListItemIcon>history</mat-icon>
-              <span matListItemTitle>
+              <span matListItemTitle class="timeline-title">
                 <app-status-badge [status]="item.status" />
-                — {{ item.changedAt | brasiliaDate }}
+                <span class="timeline-date">{{ item.changedAt | brasiliaDate }}</span>
               </span>
               @if (item.note) {
-                <span matListItemLine>{{ item.note }}</span>
+                <span matListItemLine class="timeline-note">{{ item.note }}</span>
               }
             </mat-list-item>
           }
@@ -102,6 +96,6 @@
       } @else {
         <p class="empty-history">Nenhum histórico registrado.</p>
       }
-    </mat-card-content>
-  </mat-card>
-}
+    </section>
+  }
+</div>

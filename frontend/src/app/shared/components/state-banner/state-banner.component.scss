@@ -1,0 +1,62 @@
+@use '../../../../styles/mixins' as *;
+
+.state-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  animation: fade-up 0.35s var(--transition-base) both;
+
+  mat-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 0.9375rem;
+  }
+}
+
+.state-banner--error {
+  background: var(--color-danger-soft);
+  border-color: rgba(220, 38, 38, 0.15);
+  color: #991b1b;
+
+  mat-icon {
+    color: var(--color-danger);
+  }
+}
+
+.state-banner--warning {
+  background: var(--color-warning-soft);
+  border-color: rgba(217, 119, 6, 0.15);
+  color: #92400e;
+
+  mat-icon {
+    color: var(--color-warning);
+  }
+}
+
+.state-banner--info {
+  background: var(--color-info-soft);
+  border-color: rgba(37, 99, 235, 0.15);
+  color: #1e40af;
+
+  mat-icon {
+    color: var(--color-info);
+  }
+}
+
+.state-banner--success {
+  background: var(--color-success-soft);
+  border-color: rgba(5, 150, 105, 0.15);
+  color: #065f46;
+
+  mat-icon {
+    color: var(--color-success);
+  }
+}

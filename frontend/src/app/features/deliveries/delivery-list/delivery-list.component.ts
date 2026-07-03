@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
+import { PageSkeletonComponent } from '../../../shared/components/page-skeleton/page-skeleton.component';
 import { StatusBadgeComponent } from '../../../shared/components/status-badge/status-badge.component';
 import { CarrierApiService, DeliveryApiService } from '../../../core/api/domain-api.service';
 import { AuthService } from '../../../core/auth/auth.service';
@@ -34,6 +36,8 @@ const STATUSES = ALL_DELIVERY_STATUSES;
     MatIconModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    PageHeaderComponent,
+    PageSkeletonComponent,
     StatusBadgeComponent,
   ],
   templateUrl: './delivery-list.component.html',

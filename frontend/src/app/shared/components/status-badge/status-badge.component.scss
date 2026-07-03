@@ -1,42 +1,48 @@
+@use '../../../../styles/mixins' as *;
+
 .badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
+  @include chip-base;
+  border: 1px solid transparent;
 }
 
 .status-pending {
-  background: #e3f2fd;
-  color: #1565c0;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: rgba(29, 78, 216, 0.12);
 }
 
 .status-picked {
-  background: #e8eaf6;
-  color: #3949ab;
+  background: #eef2ff;
+  color: #4338ca;
+  border-color: rgba(67, 56, 202, 0.12);
 }
 
 .status-transit {
-  background: #fff3e0;
-  color: #ef6c00;
+  background: #fff7ed;
+  color: #c2410c;
+  border-color: rgba(194, 65, 12, 0.12);
 }
 
 .status-out {
-  background: #f3e5f5;
-  color: #7b1fa2;
+  background: #faf5ff;
+  color: #7e22ce;
+  border-color: rgba(126, 34, 206, 0.12);
 }
 
 .status-delivered {
-  background: #e8f5e9;
-  color: #2e7d32;
+  background: var(--color-success-soft);
+  color: var(--color-success);
+  border-color: rgba(5, 150, 105, 0.12);
 }
 
 .status-delayed {
-  background: #ffebee;
-  color: #c62828;
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+  border-color: rgba(220, 38, 38, 0.12);
 }
 
 .status-failed {
-  background: #fce4ec;
-  color: #ad1457;
+  background: #fdf2f8;
+  color: #be185d;
+  border-color: rgba(190, 24, 93, 0.12);
 }
