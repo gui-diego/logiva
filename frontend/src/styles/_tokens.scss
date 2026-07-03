@@ -1,4 +1,6 @@
 :root {
+  --mat-sys-primary: #00a8ff;
+  --mat-sys-on-primary: #ffffff;
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --color-bg: #f4f6fb;
@@ -13,9 +15,9 @@
   --color-text-secondary: #64748b;
   --color-text-muted: #94a3b8;
 
-  --color-primary: #4f46e5;
-  --color-primary-hover: #4338ca;
-  --color-primary-soft: rgba(79, 70, 229, 0.1);
+  --color-primary: #00a8ff;
+  --color-primary-hover: #0096e6;
+  --color-primary-soft: rgba(0, 168, 255, 0.12);
 
   --color-success: #059669;
   --color-success-soft: #ecfdf5;

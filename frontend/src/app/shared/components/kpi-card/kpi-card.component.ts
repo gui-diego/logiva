@@ -14,8 +14,8 @@ export class KpiCardComponent {
   @Input() suffix?: string;
   @Input() hint?: string;
   @Input({ required: true }) icon!: string;
-  @Input() iconBg = '#1976d2';
-  @Input() accentColor = '#1976d2';
+  @Input() iconBg = 'linear-gradient(135deg, #00a8ff, #0096e6)';
+  @Input() accentColor = '#00a8ff';
 
   @HostBinding('style.--accent')
   get accentCssVar(): string {

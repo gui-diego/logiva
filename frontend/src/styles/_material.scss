@@ -28,6 +28,9 @@
 .mat-mdc-unelevated-button.mat-primary,
 .mat-mdc-raised-button.mat-primary,
 .mat-mdc-flat-button.mat-primary {
+  --mdc-filled-button-container-color: var(--color-primary);
+  --mdc-filled-button-label-text-color: #ffffff;
+  background-color: var(--color-primary) !important;
   border-radius: var(--radius-sm) !important;
   font-weight: 600 !important;
   letter-spacing: 0.01em;
@@ -39,8 +42,25 @@
 
 .mat-mdc-unelevated-button.mat-primary:not(:disabled):hover,
 .mat-mdc-flat-button.mat-primary:not(:disabled):hover {
+  --mdc-filled-button-container-color: var(--color-primary-hover);
+  background-color: var(--color-primary-hover) !important;
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
+}
+
+.mat-mdc-slide-toggle.mat-primary {
+  --mdc-switch-selected-track-color: var(--color-primary);
+  --mdc-switch-selected-hover-track-color: var(--color-primary-hover);
+  --mdc-switch-selected-focus-track-color: var(--color-primary);
+  --mdc-switch-selected-pressed-track-color: var(--color-primary-hover);
+}
+
+.mat-mdc-checkbox.mat-primary {
+  --mdc-checkbox-selected-checkmark-color: #ffffff;
+  --mdc-checkbox-selected-focus-icon-color: var(--color-primary);
+  --mdc-checkbox-selected-hover-icon-color: var(--color-primary-hover);
+  --mdc-checkbox-selected-icon-color: var(--color-primary);
+  --mdc-checkbox-selected-pressed-icon-color: var(--color-primary-hover);
 }
 
 .mat-mdc-outlined-button {
