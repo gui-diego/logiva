@@ -27,7 +27,6 @@ public class AuthService {
     private final JwtTokenProvider jwtTokenProvider;
     private final EntityMapper entityMapper;
 
-    @Transactional(readOnly = true)
     public AuthResponse login(LoginRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
