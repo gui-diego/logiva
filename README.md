@@ -1,6 +1,4 @@
-# Logiva
-
-Dashboard de monitoramento de entregas
+# Logiva - Dashboard de monitoramento de entregas
 
 ## Stack
 
