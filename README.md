@@ -1,6 +1,6 @@
 # Logiva
 
-Dashboard de monitoramento de entregas com Angular + Spring Boot + MySQL.
+Dashboard de monitoramento de entregas
 
 ## Stack
 
