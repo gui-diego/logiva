@@ -1,0 +1,107 @@
+<a routerLink="/deliveries" class="back-link">
+  <mat-icon>arrow_back</mat-icon> Voltar
+</a>
+
+@if (loading()) {
+  <div class="loading"><mat-spinner /></div>
+} @else if (errorMessage()) {
+  <mat-card class="error-card">
+    <mat-icon>error_outline</mat-icon>
+    <p>{{ errorMessage() }}</p>
+  </mat-card>
+} @else if (delivery()) {
+  <div class="header">
+    <h2>{{ delivery()!.trackingCode }}</h2>
+    <app-status-badge [status]="delivery()!.status" />
+  </div>
+
+  <div class="grid">
+    <mat-card>
+      <mat-card-header><mat-card-title>Detalhes</mat-card-title></mat-card-header>
+      <mat-card-content>
+        <dl class="details">
+          <dt>Origem</dt><dd>{{ delivery()!.originCity }}</dd>
+          <dt>Destino</dt><dd>{{ delivery()!.destinationCity }}</dd>
+          <dt>Transportadora</dt><dd>{{ delivery()!.carrierName }}</dd>
+          <dt>Cliente</dt><dd>{{ delivery()!.customerName }}</dd>
+          <dt>Peso</dt><dd>{{ delivery()!.weightKg ?? '-' }} kg</dd>
+          <dt>Previsão</dt>
+          <dd>{{ delivery()!.estimatedDeliveryAt | brasiliaDate }}</dd>
+          @if (delivery()!.deliveredAt) {
+            <dt>Entregue em</dt>
+            <dd>{{ delivery()!.deliveredAt | brasiliaDate }}</dd>
+          }
+          @if (delivery()!.assignedToEmail) {
+            <dt>Responsável</dt>
+            <dd>{{ delivery()!.assignedToEmail }}</dd>
+          }
+        </dl>
+      </mat-card-content>
+    </mat-card>
+
+    @if (auth.hasRole('OPERATOR') && delivery()!.status !== 'DELIVERED') {
+      <mat-card class="update-status-card">
+        <mat-card-header><mat-card-title>Atualizar status</mat-card-title></mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="statusForm" (ngSubmit)="updateStatus()" class="status-form">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Novo status</mat-label>
+              <mat-select formControlName="status">
+                <mat-select-trigger>
+                  {{ getStatusLabel(statusForm.value.status!) }}
+                </mat-select-trigger>
+                @for (s of statuses; track s) {
+                  <mat-option [value]="s">{{ getStatusLabel(s) }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Observação</mat-label>
+              <input matInput formControlName="note" />
+            </mat-form-field>
+            <button mat-flat-button color="primary" type="submit" [disabled]="statusForm.invalid || updating()">
+              @if (updating()) {
+                <mat-spinner diameter="20" />
+              } @else {
+                Atualizar
+              }
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    } @else if (auth.hasRole('OPERATOR') && delivery()!.status === 'DELIVERED') {
+      <mat-card class="locked-card">
+        <mat-card-content>
+          <div class="locked-message">
+            <mat-icon>lock</mat-icon>
+            <p>Esta entrega foi finalizada e não permite mais alterações de status.</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+
+  <mat-card class="timeline-card">
+    <mat-card-header><mat-card-title>Histórico</mat-card-title></mat-card-header>
+    <mat-card-content>
+      @if (delivery()!.statusHistory?.length) {
+        <mat-list>
+          @for (item of delivery()!.statusHistory; track $index) {
+            <mat-list-item>
+              <mat-icon matListItemIcon>history</mat-icon>
+              <span matListItemTitle>
+                <app-status-badge [status]="item.status" />
+                — {{ item.changedAt | brasiliaDate }}
+              </span>
+              @if (item.note) {
+                <span matListItemLine>{{ item.note }}</span>
+              }
+            </mat-list-item>
+          }
+        </mat-list>
+      } @else {
+        <p class="empty-history">Nenhum histórico registrado.</p>
+      }
+    </mat-card-content>
+  </mat-card>
+}

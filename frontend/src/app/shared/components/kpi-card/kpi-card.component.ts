@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -6,118 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-kpi-card',
   standalone: true,
   imports: [MatCardModule, MatIconModule],
-  template: `
-    <mat-card class="kpi-card" [style.--accent]="accentColor">
-      <div class="kpi-top">
-        <span class="kpi-label">{{ label }}</span>
-        <div class="kpi-icon" [style.background]="iconBg">
-          <mat-icon>{{ icon }}</mat-icon>
-        </div>
-      </div>
-      <div class="kpi-value-row">
-        <span class="kpi-value">{{ formattedValue }}</span>
-        @if (suffix) {
-          <span class="kpi-suffix">{{ suffix }}</span>
-        }
-      </div>
-      @if (hint) {
-        <span class="kpi-hint">{{ hint }}</span>
-      }
-    </mat-card>
-  `,
-  styles: `
-    .kpi-card {
-      position: relative;
-      padding: 22px 24px;
-      height: 100%;
-      border-radius: 16px;
-      border: 1px solid rgba(15, 23, 42, 0.06);
-      box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
-      background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-      overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .kpi-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--accent, #1976d2);
-    }
-
-    .kpi-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.1);
-    }
-
-    .kpi-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .kpi-label {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #64748b;
-      line-height: 1.4;
-      max-width: 70%;
-    }
-
-    .kpi-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .kpi-icon mat-icon {
-      font-size: 22px;
-      width: 22px;
-      height: 22px;
-    }
-
-    .kpi-value-row {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-    }
-
-    .kpi-value {
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1;
-      color: #0f172a;
-      letter-spacing: -0.02em;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .kpi-suffix {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #64748b;
-      line-height: 1;
-    }
-
-    .kpi-hint {
-      display: block;
-      margin-top: 8px;
-      font-size: 12px;
-      color: #94a3b8;
-    }
-  `,
+  templateUrl: './kpi-card.component.html',
+  styleUrl: './kpi-card.component.scss',
 })
 export class KpiCardComponent {
   @Input({ required: true }) label!: string;
@@ -127,6 +17,16 @@ export class KpiCardComponent {
   @Input({ required: true }) icon!: string;
   @Input() iconBg = '#1976d2';
   @Input() accentColor = '#1976d2';
+
+  @HostBinding('style.--accent')
+  get accentCssVar(): string {
+    return this.accentColor;
+  }
+
+  @HostBinding('style.--icon-bg')
+  get iconBgCssVar(): string {
+    return this.iconBg;
+  }
 
   get formattedValue(): string {
     if (typeof this.value === 'number') {

@@ -1,0 +1,74 @@
+<h2 mat-dialog-title>Nova entrega</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="form-grid">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Código de rastreio</mat-label>
+      <input matInput formControlName="trackingCode" />
+      <button mat-icon-button matSuffix type="button" (click)="generateTrackingCode()" title="Gerar código">
+        <mat-icon>autorenew</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Status inicial</mat-label>
+      <mat-select formControlName="status">
+        <mat-select-trigger>
+          {{ getStatusLabel(form.value.status!) }}
+        </mat-select-trigger>
+        @for (s of initialStatuses; track s) {
+          <mat-option [value]="s">{{ getStatusLabel(s) }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Previsão de entrega</mat-label>
+      <input matInput type="datetime-local" formControlName="estimatedDeliveryAt" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cidade de origem</mat-label>
+      <input matInput formControlName="originCity" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cidade de destino</mat-label>
+      <input matInput formControlName="destinationCity" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Peso (kg)</mat-label>
+      <input matInput type="number" formControlName="weightKg" min="0" step="0.01" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Transportadora</mat-label>
+      <mat-select formControlName="carrierId">
+        @for (c of carriers; track c.id) {
+          <mat-option [value]="c.id">{{ c.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cliente</mat-label>
+      <mat-select formControlName="customerId">
+        @for (c of customers; track c.id) {
+          <mat-option [value]="c.id">{{ c.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [disabled]="saving">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="submit()" [disabled]="form.invalid || saving">
+    @if (saving) {
+      <mat-spinner diameter="20" />
+    } @else {
+      Criar entrega
+    }
+  </button>
+</mat-dialog-actions>

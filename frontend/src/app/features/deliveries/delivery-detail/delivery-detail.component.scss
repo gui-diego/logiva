@@ -1,0 +1,107 @@
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #1976d2;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 8px 16px;
+}
+
+dt {
+  color: #64748b;
+  font-weight: 500;
+}
+
+dd {
+  margin: 0;
+}
+
+.status-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.update-status-card mat-card-content {
+  padding-top: 20px;
+}
+
+.locked-card mat-card-content {
+  padding: 20px 24px;
+}
+
+.locked-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #64748b;
+}
+
+.locked-message mat-icon {
+  color: #94a3b8;
+}
+
+.locked-message p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.timeline-card {
+  margin-top: 8px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 48px;
+}
+
+.error-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  color: #b91c1c;
+  background: #fef2f2;
+}
+
+.error-card p {
+  margin: 0;
+}
+
+.empty-history {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 14px;
+}
